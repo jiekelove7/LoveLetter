@@ -10,5 +10,6 @@ package loveletter;
  */
 public abstract class Agent {
     public abstract int playMove();
-    
+
+    public abstract String toString();
 }
