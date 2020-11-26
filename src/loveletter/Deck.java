@@ -2,6 +2,21 @@ package loveletter;
 
 import java.util.*;
 
+/**
+ * Representation of a deck. Cards may be drawn from deck. <p>
+ * Initialised with the following cards: <ol>
+ * <li> 5x Guard
+ * <li> 2x Priest
+ * <li> 2x Baron
+ * <li> 2x Handmaid
+ * <li> 2x Prince
+ * <li> 1x King
+ * <li> 1x Countess
+ * <li> 1x Princess
+ * </ol>
+ * 
+ * @author Jiemin Ai
+ */
 public class Deck {
 
     private static final Card[] init_deck = {
@@ -42,15 +57,30 @@ public class Deck {
      */
     public void newDeck() {
         deck = new ArrayList<Card>(Arrays.asList(init_deck));
-        deck = shuffle(deck);
+        try {
+            deck = shuffle(deck);
+        } catch(EmptyDeckException e) {}
+    }
+
+    public Card drawCard() throws EmptyDeckException{
+        if(deck.size() > 0) {
+            return deck.remove(0);
+        } else {
+            throw new EmptyDeckException("Deck is Empty");
+        }
+        
     }
 
     /**
      * Shuffles an ArrayList of Cards. Length does not matter. <p>
      * @return the ArrayList
      */
-    public static ArrayList<Card> shuffle(ArrayList<Card> deck) {
-        Collections.shuffle(deck);
-        return deck;
+    public static ArrayList<Card> shuffle(ArrayList<Card> deck) throws EmptyDeckException{
+        if(deck.size() > 0) {
+            Collections.shuffle(deck);
+            return deck;
+        } else {
+            throw new EmptyDeckException("Deck is Empty");
+        }
     }
 }

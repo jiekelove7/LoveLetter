@@ -3,6 +3,8 @@ package loveletter;
 /**
  * Class to represent instances of a card. <p>
  * Cards form a deck and are the basic pieces used to play the game
+ * 
+ * @author Jiemin Ai
  */
 public class Card {
     

@@ -2,6 +2,8 @@ package loveletter;
 
 /**
  * Enumeration class to depict each individual card
+ * 
+ * @author Jiemin Ai
  */
 public enum CardType {
     GUARD(1),
