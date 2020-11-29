@@ -5,14 +5,22 @@ package loveletter;
  */
 public class Player {
     
+    private static final int CARD_HAND = 0;
+    private static final int CARD_DRAWN = 1;
+    // The card in hand
     private Card hand;
-
+    // The card drawn at start of turn
     private Card drew;
 
     private Colour colour;
+    // handmaid protection
+    public boolean handmaid;
+    // Is the player eliminated?
+    public boolean eliminated;
 
     public Player(Colour colour) {
         this.colour = colour;
+        handmaid = false;
     }
 
     /**
@@ -22,12 +30,12 @@ public class Player {
      * @return The card they played
      */
     public Card playCard(int choice) {
-        if(choice == 0) {
+        if(choice == CARD_HAND) {
             Card temp = hand;
             hand = drew;
             drew = null;
             return temp;
-        } else if(choice == 1) {
+        } else if(choice == CARD_DRAWN) {
             Card temp = drew;
             drew = null;
             return temp;
@@ -41,6 +49,17 @@ public class Player {
      */
     public Card getHand() {
         return hand;
+    }
+
+    public void setHand(Card hand) {
+        this.hand = hand;
+    }
+
+    /**
+     * Used when card is drawn
+     */
+    public void setNew(Card drew) {
+        this.drew = drew;
     }
 
     /**

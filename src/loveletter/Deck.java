@@ -53,7 +53,7 @@ public class Deck {
     }
 
     /**
-     * Sets a new deck using hard coded literal, then shuffles
+     * Sets a new full deck using hard coded literal, then shuffles
      */
     public void newDeck() {
         deck = new ArrayList<Card>(Arrays.asList(init_deck));
@@ -62,6 +62,11 @@ public class Deck {
         } catch(EmptyDeckException e) {}
     }
 
+    /**
+     * Removes a card from deck and returns it
+     * i.e. A card has been drawn.
+     * @throws EmptyDeckException
+     */
     public Card drawCard() throws EmptyDeckException{
         if(deck.size() > 0) {
             return deck.remove(0);

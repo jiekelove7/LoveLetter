@@ -5,9 +5,6 @@ package loveletter;
  */
 public class LoveLetter {
     
-    /**
-     * Starts a game of LoveLetter with 4 players
-     */
     public LoveLetter() {
 
     }
