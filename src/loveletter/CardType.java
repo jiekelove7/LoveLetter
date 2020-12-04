@@ -36,10 +36,16 @@ public enum CardType {
     /**
      * Player picks a target then guesses a card (Not a GUARD). Player is eliminated 
      * if correct card is guessed.
+     * @param chosen cannot be GUARD
      * @return true if player is successfully eliminated.
      */
     public static boolean GUARD(Player player, Player target, CardType chosen) {
-        return false;
+        if(target.getHand().getType() == chosen) {
+            target.eliminated = true;
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -47,7 +53,7 @@ public enum CardType {
      * @return The type of the card
      */
     public static CardType PRIEST(Player player, Player target) {
-        return null;
+        return target.getHand().getType();
     }
 
     /**
@@ -55,6 +61,7 @@ public enum CardType {
      * @return The card of the target player, regardless if won or lost
      */
     public static CardType BARON(Player player, Player target) {
+        // TODO: Baron Implementation
         return null;
     }
 
@@ -62,7 +69,7 @@ public enum CardType {
      * Grants immunity for one round.
      */
     public static void HANDMAID(Player player) {
-
+        player.handmaid = true;
     }
 
     /**
