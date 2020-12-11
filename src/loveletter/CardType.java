@@ -61,8 +61,15 @@ public enum CardType {
      * @return The card of the target player, regardless if won or lost
      */
     public static CardType BARON(Player player, Player target) {
-        // TODO: Baron Implementation
-        return null;
+        // TODO: Ensure player.hand becomes the card they did not play before this is run
+        int value1 = player.getHand().getValue();
+        int value2 = target.getHand().getValue();
+        if(value1 < value2) {
+            player.eliminated = true;
+        } else if(value1 > value2) {
+            target.eliminated = true;
+        }
+        return target.getHand().getType();
     }
 
     /**
@@ -75,14 +82,22 @@ public enum CardType {
     /**
      * Picks a target player to discard a card. Princess causes elimination.
      */
-    public static void PRINCE(Player player, Player target) {
-
+    public static void PRINCE(Player player, Player target, Game game) {
+        Card discard = target.discard();
+        if(discard.getType() == PRINCESS) {
+            target.eliminated = true;
+        }
+        game.drawCard(target, true); // FIXME: Does this work?
     }
 
     /**
      * Picks a target player to trade hands
      */
-    public static void KING() {
+    public static void KING(Player player, Player target) {
+        Card c1 = player.discard();
+        Card c2 = target.discard();
+        player.setHand(c2);
+        target.setHand(c1);
 
     }
 
@@ -90,7 +105,8 @@ public enum CardType {
      * If in hand with KING/PRINCE, must be played for no effect.
      */
     public static void COUNTESS() {
-
+        // No effect
+        return;
     }
 
     /**
