@@ -45,6 +45,14 @@ public class Player {
     }
 
     /**
+     * Alias for playCard strictly for their 'hand' card.
+     * @return Card discarded
+     */
+    public Card discard() {
+        return playCard(CARD_HAND);
+    }
+
+    /**
      * @return The card they had in their hand
      */
     public Card getHand() {
