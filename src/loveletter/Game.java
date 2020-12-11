@@ -57,7 +57,7 @@ public class Game {
     /**
      * Draw a card from the deck
      * @param player the player who draws a card
-     * @param start true only if at the start of the game
+     * @param start true only if at the start of the game OR true if setting straight to hand
      * @return The card drawn
      */
     public Card drawCard(Player player, boolean start) {
@@ -74,7 +74,8 @@ public class Game {
         }
     }
 
-    public void playCard(Player player, Player target, CardType card) {
+
+    public void playCard(Player player, Player target, CardType card, Game game) {
         //
         switch(card) {
             case GUARD:
@@ -88,5 +89,11 @@ public class Game {
         } 
         //
 
+    }
+
+
+
+    public Colour getWinner() {
+        return winner;
     }
 }
